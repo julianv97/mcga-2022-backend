@@ -23,7 +23,7 @@ app.use(function(req, res, next) {
 
 app.use(express.json());
 
-app.use(router);
+app.use('/api', router);
 
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })

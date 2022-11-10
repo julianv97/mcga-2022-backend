@@ -50,3 +50,13 @@ export const activateProduct = async (req, res) => {
     res.status(500).send({ msg: error });
   }
 };
+
+export const updateProduct = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body);
+    if (!product) return res.status(404).send('No product found');
+    res.status(200).json({ message: 'Product updated' });
+  } catch (error) {
+    res.status(500).send({ msg: error });
+  }
+}
