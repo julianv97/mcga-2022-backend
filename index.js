@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import router from './src/routes/index.js';
+import { AuthMiddleware } from './src/middlewares/auth.js';
 
 export const app = express();
 dotenv.config();
@@ -23,7 +24,10 @@ app.use(function(req, res, next) {
 
 app.use(express.json());
 
-app.use('/api', router);
+
+
+app.use('/api',AuthMiddleware, router);
+
 
 mongoose
   .connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
