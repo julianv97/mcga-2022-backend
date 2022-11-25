@@ -3,7 +3,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import router from './src/routes/index.js';
-import { AuthMiddleware } from './src/middlewares/auth.js';
 
 export const app = express();
 dotenv.config();
@@ -26,7 +25,7 @@ app.use(express.json());
 
 
 
-app.use('/api',AuthMiddleware, router);
+app.use('/api', router);
 
 
 mongoose
